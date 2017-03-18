@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import tensorflow as tf
 import dlib
 import cv2
 from skimage import io
