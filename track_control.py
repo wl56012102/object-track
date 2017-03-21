@@ -4,9 +4,10 @@ from skimage import io
 import glob
 import numpy as np
 import serial
+import time
 
-#arduino= serial.Serial('/dev/ttyUSB1',38400)
-camera = cv2.VideoCapture(1)
+#arduino= serial.Serial('/dev/ttyUSB0',38400)
+camera = cv2.VideoCapture(0)
 pt1=[]
 pt2=[]
 global CATCH_FLAGS
@@ -51,8 +52,13 @@ while True:
     cv2.imshow("img",img_select1)
     tracker.update(frame)
     track_center = tracker.get_position().center()
-    print track_center
- #   arduino.write(track_center)
+    print track_center.x
+    if track_center.x<200:
+        print "a"
+        #arduino.write("a")
+    if track_center.x>440:
+        print "d"
+        #arduino.write("d")
     win.clear_overlay()
     win.set_image(frame)
     win.add_overlay(tracker.get_position())
